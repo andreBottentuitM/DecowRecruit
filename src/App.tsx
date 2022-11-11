@@ -1,25 +1,24 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { Profile } from './components/PROFILE/Profile';//Importando component Router
+import  MenuContextProvider  from './context/context';//Importando component FormProvider
+import { BrowserRouter, Routes, Route } from "react-router-dom"
+import { Experience } from './components/EXPERIENCE/Experience';
+import { Address } from './components/ADDRESS/Address';
+import { Formation } from './components/FORMATION/formation';
 
-function App() {
+
+const App = () => {
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <MenuContextProvider>
+    <BrowserRouter>
+      <Routes>
+      <Route path="/" element={<Profile/>}/>
+      <Route path="Address" element={<Address/>} />
+      <Route path="Experience" element={<Experience/>} />
+      <Route path="Formation" element={<Formation/>} />
+      </Routes>
+      </BrowserRouter>
+      </MenuContextProvider>
   );
 }
 
