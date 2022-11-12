@@ -7,7 +7,7 @@ export const Container = styled.div`
 .alert{
     transition: all 1s linear;
 }
-    width:30rem;
+width:30rem; 
     margin: 3rem auto;
  
     p{

@@ -1,4 +1,5 @@
-import {createContext, useReducer} from 'react'
+import {createContext, useReducer, useState} from 'react'
+import { v4 as uuidv4 } from "uuid";
 
 
 export const MenuContext = createContext<any>(undefined)
@@ -25,9 +26,10 @@ type State = {//Criando type
 
 const MenuContextProvider  = (props: any) => {
 
+        
     const initialData:State  = {//Criando type
         menuCurrent: 1,
-        menuStatus: 4,
+        menuStatus: 1,
         name: '',
         phone: '',
         date: '',
@@ -40,12 +42,15 @@ const MenuContextProvider  = (props: any) => {
         neighbourhood:'',
         city:'',
         state:'',
-        experience:null,
+        experience:[{id: uuidv4(),company:'',post:"",salary:"", initialDate:'', finishDate:'',achievements:""}],
         formation:null,
         course:null
     }
+
+    
     
     const formReducer = (state:any, action:any) => {
+        console.log(state)
           switch(action.type){
             case 'menuCurrent':
                 return {...state, menuCurrent: action.payload}
@@ -76,7 +81,7 @@ const MenuContextProvider  = (props: any) => {
                 case 'state':
                 return {...state, state:action.payload}   
                 case 'experience':
-                return {...state, experience:action.payload}   
+                return {...state, experience: action.payload}   
                 case 'formation':
                 return {...state, formation:action.payload}  
                 case 'course':
@@ -87,7 +92,7 @@ const MenuContextProvider  = (props: any) => {
     }
     const [state, dispatch] = useReducer(formReducer, initialData)
  
-    const value = { state, dispatch }
+    const value = { state, dispatch}
     return(
         <MenuContext.Provider value={value}>
             {props.children}

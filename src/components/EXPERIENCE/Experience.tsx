@@ -10,11 +10,9 @@ import { BiError } from "react-icons/bi";
 import { v4 as uuidv4 } from "uuid";
 
 export const Experience = () => {
-  const { state, dispatch } = useContext(MenuContext);
+  const {state, dispatch } = useContext(MenuContext);
   const navigate = useNavigate();
-  const [inputExperience, setInputExperience] = useState<any>([
-    { id: uuidv4() },
-  ]);
+  
   const [alert, setAlert] = useState(false);
 
   useEffect(() => {
@@ -24,24 +22,30 @@ export const Experience = () => {
   }, []);
 
   const handleAdd = () => {
-    if (inputExperience.length < 5) {
-      console.log("test");
-      let inputClone = [...inputExperience];
-      inputClone.push({ id: uuidv4() });
-      return setInputExperience(inputClone);
+    if (state.experience.length < 5) {
+      
+      let inputClone = [...state.experience,  {id: uuidv4(),company:'',post:"",salary:"", initialDate:'', finishDate:'',achievements:""} ];
+     
+    return dispatch({
+      type: "experience",
+      payload: inputClone,
+    });
     }
   };
 
   const deleteItem = (deleteItem: any) => {
-    let inputUpdated = inputExperience.filter((item: any) => {
+    let inputUpdated = state.experience.filter((item: any) => {
       return item.id !== deleteItem.id;
     });
-    setInputExperience(inputUpdated);
+    return dispatch({
+      type: "experience",
+      payload: inputUpdated,
+    });
   };
 
   const validation = () => {
     try {
-      let experienceValidation = inputExperience.every((item: any) => {
+      let experienceValidation = state.experience.every((item: any) => {
         return (
           item.company !== "" &&
           item.finishDate.length === 10 &&
@@ -54,16 +58,12 @@ export const Experience = () => {
 
       if (experienceValidation) {
         dispatch({
-          type: "experience",
-          payload: inputExperience,
-        });
-        dispatch({
           type: "menuCurrent",
-          payload: 3,
+          payload: 4,
         });
         dispatch({
           type: "menuStatus",
-          payload: 3,
+          payload: 4,
         });
         navigate("/Formation");
       } else {
@@ -89,13 +89,11 @@ export const Experience = () => {
             <BsFillPlusCircleFill /> <span>Add Experiência</span>
           </Button>
           <Form>
-            {inputExperience.map((item: any, index: any) => {
+            {state.experience.map((item: any, index: any) => {
               return (
                 <InputsExperience
                   key={index}
                   onClick={deleteItem}
-                  inputExperience={inputExperience}
-                  setInputExperience={setInputExperience}
                   item={item}
                   number={index}
                 />

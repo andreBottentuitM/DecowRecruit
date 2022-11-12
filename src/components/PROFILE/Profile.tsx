@@ -13,16 +13,16 @@ export const Profile = () => {
 
   const navigate = useNavigate();
   
-  
-  
+
   const validation = () => {
     const emailRegex = /^\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/;
     const currentlyDate = new Date()
             const currentlyYear = currentlyDate.getFullYear()
             const inputYear = state.date.split('-')
        
+          
+            console.log(state.date.length)
     if(state.name !== '' && state.phone.length === 15 && state.date.length === 10 && parseInt(inputYear[0])> 1910 && parseInt(inputYear[0]) <= currentlyYear && state.cpf.length === 14 && emailRegex.test(state.email)){
-       console.log('test')
           dispatch({
             type: 'menuCurrent',
             payload: 2
@@ -75,7 +75,7 @@ export const Profile = () => {
                           .replace(/(\d{2})(\d)/, "($1) $2")
                           .replace(/(\d{4})(\d)/, "$1-$2")
                           .replace(/(\d{4})-(\d)(\d{4})/, "$1$2-$3")
-                          .replace(/(-\d{5})\d+?$/, "$1"),
+                          .replace(/(-\d{4})\d+?$/, "$1"),
                       });
                     }}
                   />

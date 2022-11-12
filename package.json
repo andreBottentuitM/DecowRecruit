@@ -52,7 +52,6 @@
   "devDependencies": {
     "@types/react-input-mask": "^3.0.2",
     "@types/styled-components": "^5.1.26",
-    "@types/uuid": "^8.3.4",
-    "nth-check": ">=2.0.1"
+    "@types/uuid": "^8.3.4"
   }
 }
