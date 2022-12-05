@@ -11,7 +11,7 @@ import * as C from './style'
 export const Menu = () => {
    
     const { state, dispatch } = useContext(MenuContext);
-  console.log(state.menuCurrent)
+
     return (
 <div>
      <C.Container menuStatus={state.menuStatus} >
@@ -20,19 +20,19 @@ export const Menu = () => {
        <Link onClick={() => {dispatch({
           type: "menuCurrent",
           payload: 1,
-        })}} to="/"><BsFillPersonLinesFill className="icon-profile"  /></Link> 
+        })}} to="/cadastro"><BsFillPersonLinesFill className="icon-profile"  /></Link> 
        <Link onClick={() => {if(state.menuStatus >1){dispatch({
           type: "menuCurrent",
           payload: 2,
-        })}}} to={state.menuStatus > 1 ? '/Address': ''}><ImLocation className="icon-address"/></Link>
+        })}}} to={state.menuStatus > 1 ? '/address': ''}><ImLocation className="icon-address"/></Link>
        <Link onClick={() => {if(state.menuStatus >2){dispatch({
           type: "menuCurrent",
           payload: 3,
-        })}}} to={state.menuStatus > 2 ? '/Experience': ''}><MdWork className="icon-experience"/></Link>
+        })}}} to={state.menuStatus > 2 ? '/experience': ''}><MdWork className="icon-experience"/></Link>
        <Link onClick={() => {if(state.menuStatus >3){dispatch({
           type: "menuCurrent",
           payload: 4,
-        })}}} to={state.menuStatus > 3 ? '/Formation': ''}><FaGraduationCap className="icon-formation"/></Link>
+        })}}} to={state.menuStatus > 3 ? '/formation': ''}><FaGraduationCap className="icon-formation"/></Link>
        </C.Icons>
        <div className="line"></div>
        <div className="line-loading"></div>

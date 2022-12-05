@@ -7,7 +7,7 @@ import {
   Col,
   Row,
 } from "react-bootstrap";
-import { useState, useEffect, useContext } from "react";
+import { useContext } from "react";
 import { MenuContext } from "../../context/context";
 
 type Props = {

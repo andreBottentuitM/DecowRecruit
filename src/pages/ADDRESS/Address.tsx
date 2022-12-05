@@ -1,4 +1,4 @@
-import { Menu } from "../MENUS/menu";
+import { Menu } from "../../components/MENUS/menu";
 import * as C from "./style";
 import { Form, Button, Alert } from "react-bootstrap";
 import { useContext, useState, useEffect } from "react";
@@ -14,13 +14,12 @@ export const Address = () => {
 
   useEffect(() => {
     if (state.menuStatus === 1) {
-      navigate("/");
+      navigate("/cadastro");
     }
   }, []);
 
   const cepInput = async (value: any) => {
     let cepClone = value.target.value;
-    console.log(cepClone);
     dispatch({
       type: "cep",
       payload: cepClone
@@ -44,7 +43,7 @@ export const Address = () => {
 
   const validation = () => {
         if(state.cep.length === 9 && state.street !== '' && state.numero !== '' && state.complement !== '' && state.neighbourhood !== '' && state.city !== '' && state.state !== ''){
-          navigate('/Experience')
+          navigate('/experience')
           dispatch({
             type: 'menuCurrent',
             payload: 3

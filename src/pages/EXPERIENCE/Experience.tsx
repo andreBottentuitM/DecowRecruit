@@ -1,4 +1,4 @@
-import { Menu } from "../MENUS/menu";
+import { Menu } from "../../components/MENUS/menu";
 import { InputsExperience } from "./inputsComponent";
 import { Form, Button, Alert } from "react-bootstrap";
 import { BsFillPlusCircleFill } from "react-icons/bs";
@@ -17,7 +17,7 @@ export const Experience = () => {
 
   useEffect(() => {
     if (state.menuStatus === 1) {
-      navigate("/");
+      navigate("/cadastro");
     }
   }, []);
 
@@ -65,7 +65,7 @@ export const Experience = () => {
           type: "menuStatus",
           payload: 4,
         });
-        navigate("/Formation");
+        navigate("/formation");
       } else {
         setAlert(true);
       }

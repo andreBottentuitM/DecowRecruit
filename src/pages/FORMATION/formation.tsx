@@ -1,4 +1,4 @@
-import { Menu } from "../MENUS/menu";
+import { Menu } from "../../components/MENUS/menu";
 import { InputsFormation } from "./inputsFormation";
 import { InputsCourse } from "./inputsCourse";
 import { Form, Button, Alert } from "react-bootstrap";
@@ -38,7 +38,7 @@ export const Formation = () => {
 
   useEffect(() => {
     if (state.menuStatus === 1) {
-      navigate("/");
+      navigate("/cadastro");
     }
   }, []);
 

@@ -1,4 +1,4 @@
-import { Menu } from "../MENUS/menu";
+import { Menu } from "../../components/MENUS/menu";
 import { Form, Button, Alert } from "react-bootstrap";
 import * as C from "./style";
 import { Col, Row } from "react-bootstrap";
@@ -31,7 +31,7 @@ export const Profile = () => {
             type: 'menuStatus',
             payload: 2
           })
-          navigate('/Address')
+          navigate('/address')
     }else{
       setAlert(true)
     }
