@@ -8,6 +8,8 @@ import { MenuContext } from "../../context/context";
 import { useNavigate } from "react-router-dom";
 import { BiError } from "react-icons/bi";
 import { v4 as uuidv4 } from "uuid";
+import {Navbar} from '../HOME/navbar'
+import {Footer} from '../../components/FOOTER/footer'
 
 export const Experience = () => {
   const {state, dispatch } = useContext(MenuContext);
@@ -78,6 +80,8 @@ export const Experience = () => {
 
   return (
     <div>
+      <Navbar/>
+      <main>
       <C.Container>
         <Menu />
         <C.ContainerForm>
@@ -119,6 +123,8 @@ export const Experience = () => {
           </Form>
         </C.ContainerForm>
       </C.Container>
+      </main>
+      <Footer/>
     </div>
   );
 };

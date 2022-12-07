@@ -1,10 +1,12 @@
 import { Menu } from "../../components/MENUS/menu";
+import {Navbar} from '../HOME/navbar'
 import * as C from "./style";
 import { Form, Button, Alert } from "react-bootstrap";
 import { useContext, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { MenuContext } from "../../context/context";
 import { BiError } from "react-icons/bi";
+import {Footer} from '../../components/FOOTER/footer'
 
 export const Address = () => {
   const { state, dispatch } = useContext(MenuContext);
@@ -59,6 +61,8 @@ export const Address = () => {
 
   return (
     <div>
+      <Navbar/>
+      <main>
       <C.Container>
         <Menu />
         <C.ContainerForm>
@@ -142,6 +146,8 @@ export const Address = () => {
           </Form>
         </C.ContainerForm>
       </C.Container>
+      </main>
+      <Footer/>
     </div>
   );
 };

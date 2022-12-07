@@ -6,6 +6,8 @@ import { useContext, useState } from "react";
 import { MenuContext } from "../../context/context";
 import { useNavigate } from "react-router-dom";
 import { BiError } from "react-icons/bi";
+import {Navbar} from '../HOME/navbar'
+import {Footer} from '../../components/FOOTER/footer'
 
 export const Profile = () => {
   const { state, dispatch } = useContext(MenuContext);
@@ -39,6 +41,8 @@ export const Profile = () => {
   console.log(state.phone.length)
   return (
     <div>
+      <Navbar/>
+      <main>
       <C.Container>
         <Menu />
 
@@ -158,6 +162,8 @@ export const Profile = () => {
           </Form>
         </C.ContainerForm>
       </C.Container>
+      </main>
+      <Footer/>
     </div>
   );
 };

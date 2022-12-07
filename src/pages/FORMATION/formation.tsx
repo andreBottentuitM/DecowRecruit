@@ -9,6 +9,8 @@ import { MenuContext } from "../../context/context";
 import { useNavigate } from "react-router-dom";
 import { v4 as uuidv4 } from "uuid";
 import { BiError } from "react-icons/bi";
+import {Navbar} from '../HOME/navbar'
+import {Footer} from '../../components/FOOTER/footer'
 
 type FormationType = {
   id: string | undefined;
@@ -124,6 +126,8 @@ export const Formation = () => {
 
   return (
     <div>
+      <Navbar/>
+      <main>
       <Menu />
       <C.Container>
         <C.ContainerForm>
@@ -191,6 +195,8 @@ export const Formation = () => {
           </Form>
         </C.ContainerForm>
       </C.Container>
+      </main>
+      <Footer/>
     </div>
   );
 };

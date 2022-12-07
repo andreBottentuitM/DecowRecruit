@@ -73,6 +73,7 @@ export function Navbar(props:any) {
   const container = window !== undefined ? () => window().document.body : undefined;
 
   return (
+    <header>
     <AppBar style={{background:'white'}} position="static">
       <Container maxWidth="xl">
         <Toolbar disableGutters>
@@ -185,6 +186,7 @@ export function Navbar(props:any) {
         </Toolbar>
       </Container>
     </AppBar>
+    </header>
   );
 }
 

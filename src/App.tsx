@@ -5,6 +5,7 @@ import { Experience } from './pages/EXPERIENCE/Experience';
 import { Address } from './pages/ADDRESS/Address';
 import { Formation } from './pages/FORMATION/formation';
 import {Home} from './pages/HOME/home'
+import "../src/app.style.css"
 
 
 const App = () => {
