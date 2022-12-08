@@ -1,8 +1,6 @@
 import * as C from "../HOME/style-home"
 import mainImage from "../../images/image_main.jpg";
 import Stack from "@mui/material/Stack";
-import Box from "@mui/material/Box";
-import Button from "@mui/material/Button";
 import { Link } from "react-router-dom";
 import {useState, useEffect} from 'react'
 
@@ -36,8 +34,8 @@ export function Main() {
   return (
     <main>
     <C.Container>
-      <Stack>
-          <img width={600} src={mainImage} alt="" />
+      <Stack className="container-img" sx={{width:'55%'}}>
+          <img  src={mainImage} alt="" />
           </Stack>
           <Stack className="text" direction="column" alignItems="center" spacing={4}>
               <p>
@@ -46,12 +44,8 @@ export function Main() {
                 <strong style={{ color: "blue" }}>carreira de sucesso!</strong>
               </p>
             <Link
+            className="link"
               to="/cadastro"
-              style={{
-                display: "flex",
-                justifyContent: "center",
-                fontSize: "25px",
-              }}
             >
               Cadastre seu currículo aqui!
             </Link>

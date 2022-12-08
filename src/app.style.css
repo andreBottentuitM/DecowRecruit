@@ -1,14 +1,6 @@
-html{
-    height: 100%;
-    
-   
-}
-
 body{
     display: flex;
     flex-direction: column;
-    height: 100%;
-   
     width:100%;
     margin:0;
     background-color:rgb(255, 251, 251);
@@ -16,7 +8,8 @@ body{
 }
 
 main{
-    min-height: 70vh
+    min-height: 100vh;
+    margin-bottom:20px
 }
 
 footer{

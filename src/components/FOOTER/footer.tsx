@@ -10,32 +10,32 @@ import * as C from './style'
 export const Footer = () => {
 
     return (
-        <footer className="sticky bottom-0">
+        <footer>
         <C.Container>
-          <Grid container sx={{backgroundColor: 'white'}} alignItems='center'>
-            <Grid xs={4} container>
-                <Box sx={{marginLeft:'30px', fontSize:'13px'}}>
+          <Grid className='grid-container' container alignItems='center'>
+            <Grid  md={4} sm={12}  container>
+                <Box className='services'>
                 <Grid xs={12}>
-                 <p>TRABALHE CONOSCO</p>
+                 <Link sx={{textDecoration:'none',cursor:'pointer'}}>TRABALHE CONOSCO</Link>
                  </Grid>
                  <Grid xs={12}>
-                 <p>TERMOS DE USO</p>
+                 <Link sx={{textDecoration:'none', cursor:'pointer'}}>TERMOS DE USO</Link>
                  </Grid>
                  <Grid xs={12}>
-                 <p>POLÍTICA DE PRIVACIDADE</p>
+                 <Link sx={{textDecoration:'none', cursor:'pointer'}}>POLÍTICA DE PRIVACIDADE</Link>
                  </Grid>
                  <Grid xs={12}>
-                 <p>CENTRAL DE AJUDA AO RECRUTADOR</p>
+                 <Link sx={{textDecoration:'none', cursor:'pointer'}}>CENTRAL DE AJUDA AO RECRUTADOR</Link>
                  </Grid>
                  </Box>
             </Grid>
-            <Grid xs={4} container justifyContent="center">
+            <Grid md={4} sm={12} container justifyContent="center">
                 <img src={Logo} width={200} alt="" />
             </Grid>
-            <Grid container xs={4} justifyContent="flex-end">
-                <Grid sx={{width:'60%'}} container alignItems={'center'} justifyContent="center">
+            <Grid className='social' container md={4} sm={12}>
+                <Grid sx={{width:'100%'}} container alignItems={'center'} justifyContent="center">
                 <Grid xs={12} textAlign="center">
-                 <p style={{margin:0}}>Siga nossas redes sociais</p>
+                 <p>Siga nossas redes sociais</p>
                  </Grid>
                  <Box sx={{display:'flex', gap:2}}>
                 <Link sx={{color:'black'}} href="https://github.com/andreBottentuitM" target="_blank"><GitHubIcon/></Link>
