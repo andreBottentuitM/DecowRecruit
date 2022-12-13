@@ -2,6 +2,9 @@ import { Menu } from "../../components/MENUS/menu";
 import {Navbar} from '../HOME/navbar'
 import * as C from "./style";
 import { Form, Button, Alert } from "react-bootstrap";
+import Box from '@mui/material/Box';
+import FormControl from '@mui/material/FormControl';
+import TextField from '@mui/material/TextField';
 import { useContext, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { MenuContext } from "../../context/context";
@@ -66,69 +69,79 @@ export const Address = () => {
       <C.Container>
         <Menu />
         <C.ContainerForm>
-          <Form>
-            <Form.Group className="mb-3" controlId="formBasicEmail">
-              <Form.Label>CEP:*</Form.Label>
-              <Form.Control
-                type="text"
-                value={state.cep}
-                onChange={(e) => cepInput(e)}
-              />
-              <Form.Text id="passwordHelpBlock" muted>
-                Seu CEP deve ter 8 dígitos.
-              </Form.Text>
-            </Form.Group>
-            <Form.Group className="mb-3" controlId="formBasicEmail">
-              <Form.Label>Rua:*</Form.Label>
-              <Form.Control
-                type="text"
-                value={state.street}
-                onChange={(e) => {
-                  dispatch({ type: "street", payload: e.target.value });
-                }}
-              />
-            </Form.Group>
-            <Form.Group className="mb-3" controlId="formBasicEmail">
-              <Form.Label>Número da Residência:</Form.Label>
-              <Form.Control type="text" value={state.number} onChange={(e) => {
-                  dispatch({ type: "number", payload: e.target.value });
-                }}/>
-            </Form.Group>
-            <Form.Group className="mb-3" controlId="formBasicEmail">
-              <Form.Label>Complemento:</Form.Label>
-              <Form.Control type="text" value={state.complement} onChange={(e) => {
-                  dispatch({ type: "complement", payload: e.target.value });
-                }} />
-            </Form.Group>
-            <Form.Group className="mb-3" controlId="formBasicEmail">
-              <Form.Label>Bairro:*</Form.Label>
-              <Form.Control
-                type="text"
-                value={state.neighbourhood}
-                onChange={(e) => {
-                  dispatch({ type: "neighbourhood", payload: e.target.value });
-                }}
-              />
-            </Form.Group>
-            <Form.Group className="mb-3" controlId="formBasicEmail">
-              <Form.Label>Cidade:*</Form.Label>
-              <Form.Control
-                type="text"
-                value={state.city}
-                onChange={(e) => {
-                  dispatch({ type: "city", payload: e.target.value });
-                }}
-              />
-            </Form.Group>
-            <Form.Group className="mb-3" controlId="formBasicEmail">
-              <Form.Label>Estado:*</Form.Label>
-              <Form.Control
-                readOnly
-                type="text"
-                value={state.state}
-                
-              />
-            </Form.Group>
+        <Box
+        component="form"
+        sx={{
+          '& .MuiTextField-root': { m: 1},
+        }}
+        noValidate
+        autoComplete="off"
+        >
+         
+          <FormControl fullWidth variant="outlined">
+          <TextField
+          required
+          id="outlined-required"
+          label="CEP"
+          value={state.cep}
+          onChange={(e) => cepInput(e)}
+        />
+        </FormControl>
+         <TextField
+          required
+          id="outlined-required"
+          label="Rua"
+          value={state.street}
+          onChange={(e) => {
+            dispatch({ type: "street", payload: e.target.value });
+          }}
+        />
+        <TextField
+          required
+          id="outlined-required"
+          label="Número"
+          value={state.number}
+          onChange={(e) => {
+            dispatch({ type: "number", payload: e.target.value });
+          }}
+        />
+         <TextField
+          required
+          id="outlined-required"
+          label="Complemento"
+          value={state.complement}
+          onChange={(e) => {
+            dispatch({ type: "complement", payload: e.target.value });
+          }}
+        />
+        <TextField
+          required
+          id="outlined-required"
+          label="Bairro"
+          value={state.neighbourhood}
+          onChange={(e) => {
+            dispatch({ type: "neighbourhood", payload: e.target.value });
+          }}
+        />
+        <TextField
+          required
+          id="outlined-required"
+          label="Cidade"
+          value={state.city}
+          onChange={(e) => {
+            dispatch({ type: "city", payload: e.target.value });
+          }}
+        />
+        <TextField
+          required
+          id="outlined-required"
+          label="Estado"
+          value={state.state}
+          onChange={(e) => {
+            dispatch({ type: "state", payload: e.target.value });
+          }}
+        />
+          
             {alert && (
               <Alert
                 variant="danger"
@@ -143,7 +156,7 @@ export const Address = () => {
             <div className="d-grid gap-2 mt-5">
               <Button onClick={validation} variant="primary">Continuar</Button>
             </div>
-          </Form>
+          </Box>
         </C.ContainerForm>
       </C.Container>
       </main>

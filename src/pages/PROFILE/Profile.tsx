@@ -1,13 +1,15 @@
 import { Menu } from "../../components/MENUS/menu";
-import { Form, Button, Alert } from "react-bootstrap";
+import { Button, Alert } from "react-bootstrap";
 import * as C from "./style";
-import { Col, Row } from "react-bootstrap";
 import { useContext, useState } from "react";
 import { MenuContext } from "../../context/context";
 import { useNavigate } from "react-router-dom";
 import { BiError } from "react-icons/bi";
 import {Navbar} from '../HOME/navbar'
 import {Footer} from '../../components/FOOTER/footer'
+import Box from '@mui/material/Box';
+import FormControl from '@mui/material/FormControl';
+import TextField from '@mui/material/TextField';
 
 export const Profile = () => {
   const { state, dispatch } = useContext(MenuContext);
@@ -24,7 +26,7 @@ export const Profile = () => {
        
           
             console.log(state.date.length)
-    if(state.name !== '' && state.phone.length === 15 && state.date.length === 10 && parseInt(inputYear[0])> 1910 && parseInt(inputYear[0]) <= currentlyYear && state.cpf.length === 14 && emailRegex.test(state.email)){
+    if(state.name !== '' && state.phone.length === 15 && state.date.length === 10/* && parseInt(inputYear[0])> 1910 && parseInt(inputYear[0]) <= currentlyYear*/ && state.cpf.length === 14 && emailRegex.test(state.email)){
           dispatch({
             type: 'menuCurrent',
             payload: 2
@@ -47,103 +49,89 @@ export const Profile = () => {
         <Menu />
 
         <C.ContainerForm>
-          <Form>
-            <Form.Group className="mb-3" controlId="formBasicEmail">
-              <Form.Label>Nome Completo:*</Form.Label>
-              <Form.Control
-                type="text"
-                value={state.name}
-                onChange={(e) => {
-                  dispatch({
-                    type: "name",
-                    payload: e.target.value,
-                  });
-                }}
-              />
-              <Form.Text id="passwordHelpBlock" muted>
-                Ex: André Bottentuit de Macedo
-              </Form.Text>
-            </Form.Group>
-            <Row>
-              <Col>
-                <Form.Group className="mb-3" controlId="formBasicEmail">
-                  <Form.Label>Telefone:*</Form.Label>
-                  <Form.Control
-                    type="text"
-                    value={state.phone}
-                    onChange={(e) => {
-                      dispatch({
-                        type: "phone",
-                        payload: e.target.value
-                          .replace(/\D/g, "")
-                          .replace(/(\d{2})(\d)/, "($1) $2")
-                          .replace(/(\d{4})(\d)/, "$1-$2")
-                          .replace(/(\d{4})-(\d)(\d{4})/, "$1$2-$3")
-                          .replace(/(-\d{4})\d+?$/, "$1"),
-                      });
-                    }}
-                  />
-                  <Form.Text id="passwordHelpBlock" muted>
-                    Seu CPF deve ter 9 números mais o DDD. Ex: (00) 00000-0000.
-                  </Form.Text>
-                </Form.Group>
-              </Col>
-              <Col>
-                <Form.Group className="mb-3" controlId="formBasicEmail">
-                  <Form.Label>Data de Nascimento:*</Form.Label>
-                  <Form.Control
-                    type="date"
-                    value={state.date}
-                    onChange={(e) => {
-                      dispatch({
-                        type: "date",
-                        payload: e.target.value,
-                      });
-                    }}
-                  />
-                  <Form.Text id="passwordHelpBlock" muted>
-                     Ex: 12/12/2000.
-                  </Form.Text>
-                </Form.Group>
-              </Col>
-            </Row>
-            <Form.Group className="mb-3" controlId="formBasicEmail">
-              <Form.Label>CPF:*</Form.Label>
-              <Form.Control
-                type="text"
-                value={state.cpf}
-                onChange={(e) =>
-                  dispatch({
-                    type: "cpf",
-                    payload: e.target.value
-                      .replace(/\D/g, "")
-                      .replace(/(\d{3})(\d)/, "$1.$2")
-                      .replace(/(\d{3})(\d)/, "$1.$2")
-                      .replace(/(\d{3})(\d{1,2})/, "$1-$2")
-                      .replace(/(-\d{2})\d+?$/, "$1"),
-                  })
-                }
-              />
-              <Form.Text id="passwordHelpBlock" muted>
-                Seu CPF deve ter 11 números. Ex: 000.000.000-00.
-              </Form.Text>
-            </Form.Group>
-            <Form.Group className="mb-3" controlId="formBasicEmail">
-              <Form.Label>Email:*</Form.Label>
-              <Form.Control
-                value={state.email}
-                type="email"
-                onChange={(e) => {
-                  dispatch({
-                    type: "email",
-                    payload: e.target.value,
-                  });
-                }}
-              />
-              <Form.Text id="passwordHelpBlock" muted>
-                Ex: andre.bottentuit@gmail.com
-              </Form.Text>
-            </Form.Group>
+        <Box 
+        component="form"
+        sx={{
+          '& .MuiTextField-root': { m: 1},
+        }}
+        noValidate
+        autoComplete="off">
+        <TextField
+          required
+          id="outlined-required"
+          label="Nome Completo"
+          value={state.name}
+          onChange={(e) => {
+            dispatch({
+              type: "name",
+              payload: e.target.value,
+            });
+          }}
+        />
+        <TextField
+          required
+          id="outlined-required"
+          label="Telefone"
+          value={state.phone}
+          onChange={(e) => {
+            dispatch({
+              type: "phone",
+              payload: e.target.value
+                .replace(/\D/g, "")
+                .replace(/(\d{2})(\d)/, "($1) $2")
+                .replace(/(\d{4})(\d)/, "$1-$2")
+                .replace(/(\d{4})-(\d)(\d{4})/, "$1$2-$3")
+                .replace(/(-\d{4})\d+?$/, "$1"),
+            });
+          }}
+        />
+        <TextField
+          required
+          id="outlined-required"
+          label="Data de Nascimento"
+          value={state.date}
+          onChange={(e) => {
+            dispatch({
+              type: "date",
+              payload: e.target.value,
+            });
+          }}
+        />
+        <FormControl>
+        <TextField
+          required
+          id="outlined-required"
+          label="CPF"
+          value={state.cpf}
+          onChange={(e) => {
+            dispatch({
+              type: "cpf",
+              payload: e.target.value
+                .replace(/\D/g, "")
+                .replace(/(\d{3})(\d)/, "$1.$2")
+                .replace(/(\d{3})(\d)/, "$1.$2")
+                .replace(/(\d{3})(\d{1,2})/, "$1-$2")
+                .replace(/(-\d{2})\d+?$/, "$1"),
+            })
+          }}
+        />
+        </FormControl>
+         <FormControl fullWidth>
+        <TextField
+          required
+          id="outlined-required"
+          label="Email"
+          value={state.email}
+          onChange={(e) => {
+            dispatch({
+              type: "email",
+              payload: e.target.value,
+            });
+          }}
+        />
+        </FormControl>
+        </Box>
+          
             {alert &&
             <Alert
                 variant="danger"
@@ -159,7 +147,7 @@ export const Profile = () => {
                 Continuar
               </Button>
             </div>
-          </Form>
+          
         </C.ContainerForm>
       </C.Container>
       </main>

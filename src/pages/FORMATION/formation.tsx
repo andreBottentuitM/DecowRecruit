@@ -12,26 +12,8 @@ import { BiError } from "react-icons/bi";
 import {Navbar} from '../HOME/navbar'
 import {Footer} from '../../components/FOOTER/footer'
 
-type FormationType = {
-  id: string | undefined;
-  instituition: string | undefined;
-  courseName: string | undefined;
-  level: string | undefined;
-  initialDate: string | undefined;
-  finishDate: string | undefined;
-}[];
 
 export const Formation = () => {
-  const [inputFormation, setInputFormation] = useState<FormationType>([
-    {
-      id: uuidv4(),
-      instituition: "",
-      courseName: "",
-      level: "",
-      initialDate: "",
-      finishDate: "",
-    },
-  ]);
   const [inputCourse, setInputCourse] = useState<any>([{ id: uuidv4() }]);
   const [alert, setAlert] = useState(false);
   const { state, dispatch } = useContext(MenuContext);
@@ -45,43 +27,46 @@ export const Formation = () => {
   }, []);
 
   const handleAddFormation = (formation: string) => {
-    if (inputFormation.length < 5 && formation === "formation") {
-      let inputClone = [...inputFormation];
+    if (state.formation.length < 5 && formation === "formation") {
+      let inputClone = [...state.experience, {id: uuidv4(), instituition:'', course:'', level:'', initialDate:'', finishDate:''}]
 
-      inputClone.push({
-        id: uuidv4(),
-        instituition: "",
-        courseName: "",
-        level: "",
-        initialDate: "",
-        finishDate: "",
-      });
-      return setInputFormation(inputClone);
+      return dispatch({
+        type: "formation",
+        payload: inputClone,
+      })
     }
-    if (inputCourse.length < 5 && formation === "course") {
-      let inputClone = [...inputCourse];
-      inputClone.push({ id: uuidv4() });
-      return setInputCourse(inputClone);
+    if (state.course.length < 5 && formation === "course") {
+      let inputClone = [...state.course, {id: uuidv4(), instituition:'', course:'', initialDate:'', finishDate:''}];
+      return dispatch({
+        type: "course",
+        payload: inputClone,
+      })
     }
   };
 
   const deleteItem = (deleteItem: any, type: string) => {
     if (type === "information") {
-      let inputUpdated = inputFormation.filter((item: any) => {
+      let inputUpdated = state.formation.filter((item: any) => {
         return item.id !== deleteItem.id;
       });
-      setInputFormation(inputUpdated);
+      return dispatch({
+        type: "formation",
+        payload: inputUpdated,
+      });
     } else if (type === "course") {
-      let inputUpdatedCourse = inputCourse.filter((item: any) => {
+      let inputUpdatedCourse = state.course.filter((item: any) => {
         return item.id !== deleteItem.id;
       });
-      setInputCourse(inputUpdatedCourse);
+      return dispatch({
+        type: "course",
+        payload: inputUpdatedCourse,
+      });
     }
   };
  
   const validation = () => {
     try {
-      let formationValidation = inputFormation.every((item:any) => {
+      let formationValidation = state.formation.every((item:any) => {
         return (
           item.instituition !== "" &&
           item.finishDate.length === 10 &&
@@ -89,7 +74,7 @@ export const Formation = () => {
           (item.level !== "Selecione o nível de formação" || item.level !== undefined)
         );
       });
-      let coursesValidation = inputCourse.every((item: any) => {
+      let coursesValidation = state.course.every((item: any) => {
         return (
           item.instituition !== "" &&
           item.finishDate.length === 10 &&
@@ -98,22 +83,14 @@ export const Formation = () => {
       });
       if (formationValidation && coursesValidation) {
         dispatch({
-          type: "course",
-          payload: inputCourse,
+          type: "menuCurrent",
+          payload: 4,
         });
         dispatch({
-          type: "formation",
-          payload: inputFormation,
+          type: "menuStatus",
+          payload: 4,
         });
-        dispatch({
-          type: 'menuCurrent',
-          payload: 4
-        })
-        dispatch({
-          type: 'menuStatus',
-          payload: 4
-        })
-        navigate("/Experience");
+        navigate("/");
       } else {
         setAlert(true);
       }
@@ -141,13 +118,11 @@ export const Formation = () => {
             <BsFillPlusCircleFill /> <span>Add Formação Escolar</span>
           </Button>
           <Form>
-            {inputFormation.map((item: any, index: any) => {
+            {state.formation.map((item: any, index: any) => {
               return (
                 <InputsFormation
                   key={index}
                   onClick={deleteItem}
-                  inputFormation={inputFormation}
-                  setInputFormation={setInputFormation}
                   item={item}
                   number={index}
                 />
@@ -164,13 +139,11 @@ export const Formation = () => {
               <BsFillPlusCircleFill /> <span>Add Curso</span>
             </Button>
 
-            {inputCourse.map((item: any, index: any) => {
+            {state.course.map((item: any, index: any) => {
               return (
                 <InputsCourse
                   key={index}
                   onClick={deleteItem}
-                  inputCourse={inputCourse}
-                  setInputCourse={setInputCourse}
                   item={item}
                   number={index}
                 />

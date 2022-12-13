@@ -20,8 +20,8 @@ type State = {//Criando type
         city:string,
         state:string,
         experience:any,
-        formation:null,
-        course:null
+        formation:any,
+        course:any
 }
 
 const MenuContextProvider  = (props: any) => {
@@ -43,8 +43,8 @@ const MenuContextProvider  = (props: any) => {
         city:'',
         state:'',
         experience:[{id: uuidv4(),company:'',post:"",salary:"", initialDate:'', finishDate:'',achievements:""}],
-        formation:null,
-        course:null
+        formation:[{id: uuidv4(), instituition:'', course:'', level:'', initialDate:'', finishDate:''}],
+        course:[{id: uuidv4(), instituition:'', course:'', initialDate:'', finishDate:''}]
     }
 
     

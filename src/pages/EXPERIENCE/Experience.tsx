@@ -11,6 +11,7 @@ import { v4 as uuidv4 } from "uuid";
 import {Navbar} from '../HOME/navbar'
 import {Footer} from '../../components/FOOTER/footer'
 
+
 export const Experience = () => {
   const {state, dispatch } = useContext(MenuContext);
   const navigate = useNavigate();
@@ -92,7 +93,7 @@ export const Experience = () => {
           >
             <BsFillPlusCircleFill /> <span>Add Experiência</span>
           </Button>
-          <Form>
+          
             {state.experience.map((item: any, index: any) => {
               return (
                 <InputsExperience
@@ -120,7 +121,6 @@ export const Experience = () => {
                 Continuar
               </Button>
             </div>
-          </Form>
         </C.ContainerForm>
       </C.Container>
       </main>
